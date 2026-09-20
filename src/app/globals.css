@@ -1,13 +1,43 @@
 @import "tailwindcss";
 
-/* Palette de base — étoffée à l'étape 2 (design system). */
-:root {
+/*
+ * Design system AM.
+ * Palette : noir profond, blanc cassé, accent or/champagne.
+ * Toutes les paires texte/fond ci-dessous respectent au minimum WCAG AA
+ * (contraste ≥ 4.5:1 pour le texte courant, ≥ 3:1 pour le grand texte).
+ */
+@theme inline {
   --color-am-black: #000000;
+  --color-am-black-soft: #0a0a0a;
   --color-am-offwhite: #f5f1e8;
+  --color-am-offwhite-muted: #b8b3a6;
   --color-am-gold: #c9a96e;
+  --color-am-gold-soft: #ddc794;
+
+  --font-serif: var(--font-cormorant);
+  --font-sans: var(--font-jost);
 }
 
 body {
   background: var(--color-am-black);
   color: var(--color-am-offwhite);
+  font-family: var(--font-sans);
+  font-weight: 300;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  /* Zone de focus visible et cohérente au clavier, sur fond noir. */
+  :focus-visible {
+    outline: 1px solid var(--color-am-gold);
+    outline-offset: 3px;
+  }
 }

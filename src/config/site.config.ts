@@ -9,6 +9,7 @@
 
 export type Universe = "old-money" | "streetwear";
 export type ProductCategory = "t-shirts" | "accessoires";
+export type Audience = "homme" | "femme" | "enfant" | "mixte";
 
 export interface ProductImages {
   /** Photo produit seul, de face. */
@@ -25,6 +26,8 @@ export interface Product {
   name: string;
   universe: Universe;
   category: ProductCategory;
+  /** Rayon du sélecteur Homme/Femme/Enfant du header. */
+  audience: Audience;
   /** Prix en euros (ex. 65 pour 65,00 €). */
   price: number;
   shortDescription: string;
@@ -87,6 +90,11 @@ export const siteConfig = {
   },
 
   navigation: {
+    audiences: [
+      { id: "homme" as Audience, label: "Homme" },
+      { id: "femme" as Audience, label: "Femme" },
+      { id: "enfant" as Audience, label: "Enfant" },
+    ],
     universes: [
       { id: "old-money" as Universe, label: "Old Money" },
       { id: "streetwear" as Universe, label: "Streetwear" },
@@ -146,6 +154,7 @@ export const siteConfig = {
       name: "T-Shirt Col Polo Crème",
       universe: "old-money",
       category: "t-shirts",
+      audience: "mixte",
       price: 65,
       shortDescription: "T-shirt col polo en coton lourd, coupe droite.",
       description:
@@ -165,6 +174,7 @@ export const siteConfig = {
       name: "Écharpe en Laine Signature",
       universe: "old-money",
       category: "accessoires",
+      audience: "mixte",
       price: 45,
       shortDescription: "Écharpe en laine mélangée, monogramme tissé.",
       description:
@@ -184,6 +194,7 @@ export const siteConfig = {
       name: "T-Shirt Oversize Logo AM",
       universe: "streetwear",
       category: "t-shirts",
+      audience: "mixte",
       price: 70,
       shortDescription: "T-shirt oversize, gros logo AM imprimé dans le dos.",
       description:
@@ -203,6 +214,7 @@ export const siteConfig = {
       name: "Casquette Brodée AM",
       universe: "streetwear",
       category: "accessoires",
+      audience: "mixte",
       price: 40,
       shortDescription: "Casquette 6 panneaux, logo AM brodé, strap ajustable.",
       description:

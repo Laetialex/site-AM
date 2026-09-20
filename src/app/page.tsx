@@ -1,18 +1,24 @@
 import { siteConfig } from "@/config/site.config";
+import { Container } from "@/components/ui/Container";
+import { Button } from "@/components/ui/Button";
 
-// Page d'accueil provisoire — le hero cinématique, le header/footer et le
-// design system complet arrivent à l'étape 2/3. Cette version confirme
-// juste que l'arborescence et la config sont branchées.
+// Page d'accueil provisoire — le hero cinématique plein écran, les
+// apparitions au scroll et la section Drop 01 arrivent à l'étape 3. Cette
+// version sert à vérifier le design system (couleurs, typo, composants) et
+// le header/footer.
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-4 px-6 text-center">
-      <p className="text-xs tracking-[0.3em] text-[#C9A96E] uppercase">
+    <Container className="flex min-h-[70vh] flex-col items-center justify-center gap-6 py-24 text-center">
+      <p className="text-xs tracking-[0.3em] text-am-gold uppercase">
         {siteConfig.drop.name}
       </p>
-      <h1 className="font-serif text-5xl">{siteConfig.brand.fullName}</h1>
-      <p className="max-w-md text-sm text-[#F5F1E8]/70">
+      <h1 className="text-5xl sm:text-6xl">{siteConfig.brand.fullName}</h1>
+      <p className="max-w-md text-sm font-light text-am-offwhite-muted">
         {siteConfig.drop.heroTagline}
       </p>
-    </div>
+      <Button href="/nouveautes" className="mt-4">
+        {siteConfig.drop.heroCtaLabel}
+      </Button>
+    </Container>
   );
 }
