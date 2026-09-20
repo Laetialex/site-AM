@@ -2,15 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/config/site.config";
 import { formatPrice } from "@/lib/format";
-
-function availabilityLabel(product: Product) {
-  if (product.stockDisplayed === null) return "Précommande ouverte";
-  if (product.stockDisplayed <= 0) return "Épuisé";
-  return `Plus que ${product.stockDisplayed}`;
-}
+import { availabilityLabel, isSoldOut } from "@/lib/product";
 
 export function ProductCard({ product }: { product: Product }) {
-  const soldOut = product.stockDisplayed === 0;
+  const soldOut = isSoldOut(product);
 
   return (
     <Link

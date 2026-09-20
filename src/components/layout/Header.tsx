@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { siteConfig } from "@/config/site.config";
+import { useCart } from "@/lib/cart";
 import { IconButton } from "@/components/ui/IconButton";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import {
@@ -15,14 +16,12 @@ import {
   UserIcon,
 } from "@/components/icons";
 
-// Le compteur panier sera branché sur un vrai état à l'étape 5.
-const CART_COUNT = 0;
-
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const router = useRouter();
+  const { totalCount } = useCart();
 
   function handleSearchSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -64,7 +63,7 @@ export function Header() {
             <IconButton label="Mon compte" href="/compte">
               <UserIcon />
             </IconButton>
-            <IconButton label="Panier" href="/panier" badge={CART_COUNT}>
+            <IconButton label="Panier" href="/panier" badge={totalCount}>
               <BagIcon />
             </IconButton>
           </div>

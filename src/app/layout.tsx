@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { GateForm } from "@/components/gate/GateForm";
 import { GATE_COOKIE } from "@/lib/gate";
+import { CartProvider } from "@/lib/cart";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -25,11 +26,11 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-full flex-col bg-am-black text-am-offwhite">
         {hasEntered ? (
-          <>
+          <CartProvider>
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
-          </>
+          </CartProvider>
         ) : (
           <GateForm />
         )}
