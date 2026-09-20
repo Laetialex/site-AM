@@ -1,58 +1,18 @@
-import Link from "next/link";
+import { siteConfig } from "@/config/site.config";
 
+// Page d'accueil provisoire — le hero cinématique, le header/footer et le
+// design system complet arrivent à l'étape 2/3. Cette version confirme
+// juste que l'arborescence et la config sont branchées.
 export default function Home() {
   return (
-    <div className="mx-auto flex max-w-3xl flex-col items-center px-4 py-20 text-center">
-      <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
-        Bienvenue sur <span className="text-blue-600">EduConnect</span>
-      </h1>
-      <p className="mt-4 max-w-xl text-lg text-slate-600">
-        La plateforme qui met en relation élèves et professeurs particuliers
-        pour progresser ensemble.
+    <div className="flex min-h-screen flex-col items-center justify-center gap-4 px-6 text-center">
+      <p className="text-xs tracking-[0.3em] text-[#C9A96E] uppercase">
+        {siteConfig.drop.name}
       </p>
-
-      <div className="mt-10 grid w-full gap-4 sm:grid-cols-2">
-        <Link
-          href="/auth/inscription?role=eleve"
-          className="group rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition hover:border-blue-500 hover:shadow-md"
-        >
-          <div className="text-4xl">🎓</div>
-          <h2 className="mt-4 text-xl font-bold text-slate-900">
-            Je suis élève
-          </h2>
-          <p className="mt-2 text-sm text-slate-500">
-            Trouve un professeur qui peut t&apos;aider dans la matière de ton
-            choix.
-          </p>
-          <span className="mt-4 inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white group-hover:bg-blue-700">
-            C&apos;est parti
-          </span>
-        </Link>
-
-        <Link
-          href="/auth/inscription?role=professeur"
-          className="group rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition hover:border-blue-500 hover:shadow-md"
-        >
-          <div className="text-4xl">🧑‍🏫</div>
-          <h2 className="mt-4 text-xl font-bold text-slate-900">
-            Je suis professeur
-          </h2>
-          <p className="mt-2 text-sm text-slate-500">
-            Propose tes cours et aide des élèves à progresser dans tes
-            matières.
-          </p>
-          <span className="mt-4 inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white group-hover:bg-blue-700">
-            C&apos;est parti
-          </span>
-        </Link>
-      </div>
-
-      <Link
-        href="/annuaire"
-        className="mt-10 text-sm font-medium text-slate-500 underline-offset-4 hover:text-blue-600 hover:underline"
-      >
-        Ou consulter l&apos;annuaire sans créer de compte →
-      </Link>
+      <h1 className="font-serif text-5xl">{siteConfig.brand.fullName}</h1>
+      <p className="max-w-md text-sm text-[#F5F1E8]/70">
+        {siteConfig.drop.heroTagline}
+      </p>
     </div>
   );
 }

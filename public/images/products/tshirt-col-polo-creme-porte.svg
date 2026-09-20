@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1125" viewBox="0 0 900 1125">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="900" y2="1125" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#050505"/>
+      <stop offset="1" stop-color="#1c1712"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1125" fill="url(#bg)"/>
+  <rect x="24" y="24" width="852" height="1077" fill="none" stroke="#C9A96E" stroke-width="1" opacity="0.5"/>
+  <text x="450" y="46%" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="150" fill="#C9A96E" opacity="0.9">AM</text>
+  <text x="450" y="93%" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="20" letter-spacing="1" fill="#F5F1E8" opacity="0.55">T-Shirt Col Polo Crème — porté</text>
+</svg>
