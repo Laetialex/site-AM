@@ -45,7 +45,7 @@ Le projet avance par étapes (voir le fil de conversation pour le détail) :
 2. ✅ Design system + header/footer
 3. ✅ Porte d'entrée + page d'accueil + catalogue
 4. ✅ Fiche produit complète
-5. ⬜ Panier, code promo, livraison
+5. ✅ Panier, code promo, livraison
 6. ⬜ Supabase (comptes, favoris, avis, newsletter)
 7. ⬜ Stripe Checkout + webhook + emails
 8. ⬜ Compte à rebours + états du drop

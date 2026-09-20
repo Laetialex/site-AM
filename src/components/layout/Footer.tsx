@@ -2,6 +2,7 @@ import Link from "next/link";
 import { siteConfig } from "@/config/site.config";
 import { Container } from "@/components/ui/Container";
 import { NewsletterForm } from "@/components/layout/NewsletterForm";
+import { PaymentLogos } from "@/components/PaymentLogos";
 import { InstagramIcon, TikTokIcon } from "@/components/icons";
 
 const legalLinks = [
@@ -12,10 +13,6 @@ const legalLinks = [
   { href: "/cgv", label: "CGV" },
   { href: "/mentions-legales", label: "Mentions légales" },
 ];
-
-// Représentation générique (texte, pas les logos officiels) — à remplacer
-// par les badges fournis par Stripe/PayPal une fois le paiement branché.
-const paymentMethods = ["Visa", "Mastercard", "Apple Pay", "PayPal"];
 
 export function Footer() {
   return (
@@ -82,16 +79,7 @@ export function Footer() {
             © {new Date().getFullYear()} {siteConfig.brand.fullName}. Tous
             droits réservés.
           </p>
-          <div className="flex items-center gap-2">
-            {paymentMethods.map((method) => (
-              <span
-                key={method}
-                className="rounded-sm border border-am-offwhite/20 px-2 py-1 text-[10px] tracking-wide text-am-offwhite-muted"
-              >
-                {method}
-              </span>
-            ))}
-          </div>
+          <PaymentLogos />
         </Container>
       </div>
     </footer>
