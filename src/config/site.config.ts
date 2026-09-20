@@ -109,6 +109,9 @@ export const siteConfig = {
     flatRate: 4.9,
     freeAboveAmount: 120,
     estimatedDays: "3 à 5 jours ouvrés",
+    // Codes pays ISO 3166-1 alpha-2 — Stripe Checkout ne proposera que ceux-ci
+    // à l'étape adresse de livraison.
+    allowedCountries: ["FR", "BE", "CH", "LU", "MC"],
   },
 
   promoCodes: [

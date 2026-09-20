@@ -1,21 +1,12 @@
 "use server";
 
-import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { getOrigin } from "@/lib/origin";
 
 export type ActionState = { error?: string; success?: string };
 
 const NOT_CONFIGURED_ERROR = "Les comptes ne sont pas encore activés sur ce site.";
-
-async function getOrigin() {
-  // NEXT_PUBLIC_SITE_URL est fiable en production ; en local/preview on
-  // retombe sur l'en-tête Host de la requête.
-  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
-  const h = await headers();
-  const proto = h.get("x-forwarded-proto") ?? "http";
-  return `${proto}://${h.get("host")}`;
-}
 
 /** N'autorise que les chemins internes ("/favoris"), jamais une URL externe. */
 function safeNext(value: FormDataEntryValue | null) {

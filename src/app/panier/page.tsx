@@ -10,6 +10,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { PaymentLogos } from "@/components/PaymentLogos";
 import { CartLineItem } from "@/components/cart/CartLineItem";
+import { CheckoutButton } from "@/components/cart/CheckoutButton";
 
 export default function PanierPage() {
   const { items, promoCode, updateQuantity, removeItem, setPromoCode } = useCart();
@@ -137,12 +138,10 @@ export default function PanierPage() {
 
           <PaymentLogos className="justify-center border-t border-am-gold/15 pt-4" />
 
-          <Button type="button" disabled className="w-full">
-            Passer au paiement
-          </Button>
+          <CheckoutButton items={items} promoCode={promo?.code ?? null} />
           <p className="text-center text-xs font-light text-am-offwhite-muted">
             Précommande — livraison estimée sous {siteConfig.drop.estimatedDeliveryWeeks}{" "}
-            semaines. Le paiement Stripe arrive à l&apos;étape 7.
+            semaines.
           </p>
         </div>
       </div>

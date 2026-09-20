@@ -21,6 +21,7 @@ interface CartContextValue extends StoredCart {
   removeItem: (slug: string, size: string) => void;
   updateQuantity: (slug: string, size: string, quantity: number) => void;
   setPromoCode: (code: string | null) => void;
+  clear: () => void;
   totalCount: number;
 }
 
@@ -89,6 +90,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setPromoCodeState(code);
   }, []);
 
+  const clear = useCallback(() => {
+    setItems([]);
+    setPromoCodeState(null);
+  }, []);
+
   const totalCount = items.reduce((sum, i) => sum + i.quantity, 0);
 
   return (
@@ -100,6 +106,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         removeItem,
         updateQuantity,
         setPromoCode,
+        clear,
         totalCount,
       }}
     >
