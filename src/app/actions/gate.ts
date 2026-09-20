@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { GATE_COOKIE } from "@/lib/gate";
+import { createClient } from "@/lib/supabase/server";
 
 const ONE_YEAR = 60 * 60 * 24 * 365;
 
@@ -20,8 +21,13 @@ export async function submitGate(formData: FormData) {
     redirect("/");
   }
 
-  // TODO (étape 6) : enregistrer { prenom, email } dans la table Supabase
-  // gate_signups, une fois le projet Supabase créé.
+  const supabase = await createClient();
+  if (supabase) {
+    // onConflict: une même adresse qui repasse la porte ne crée pas de doublon.
+    await supabase
+      .from("gate_signups")
+      .upsert({ prenom, email }, { onConflict: "email", ignoreDuplicates: true });
+  }
 
   const cookieStore = await cookies();
   cookieStore.set(GATE_COOKIE, "1", {

@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { siteConfig } from "@/config/site.config";
+import { createClient } from "@/lib/supabase/server";
+import type { Review } from "@/lib/reviews";
 import { Container } from "@/components/ui/Container";
 import { Breadcrumb } from "@/components/product/Breadcrumb";
 import { Gallery } from "@/components/product/Gallery";
 import { AddToCartForm } from "@/components/product/AddToCartForm";
+import { WishlistButton } from "@/components/product/WishlistButton";
 import { ReviewsSection } from "@/components/product/ReviewsSection";
 import { ProductCard } from "@/components/product/ProductCard";
 import { Reveal } from "@/components/motion/Reveal";
@@ -39,6 +42,30 @@ export default async function ProductPage({
   const product = findProduct(slug);
   if (!product) notFound();
 
+  const supabase = await createClient();
+  const user = supabase ? (await supabase.auth.getUser()).data.user : null;
+
+  const [{ data: wishlistRow }, { data: reviewRows }] = supabase
+    ? await Promise.all([
+        user
+          ? supabase
+              .from("wishlist")
+              .select("id")
+              .eq("user_id", user.id)
+              .eq("product_slug", product.slug)
+              .maybeSingle()
+          : Promise.resolve({ data: null }),
+        supabase
+          .from("reviews")
+          .select("id, user_id, rating, comment, created_at, profiles(prenom)")
+          .eq("product_slug", product.slug)
+          .order("created_at", { ascending: false }),
+      ])
+    : [{ data: null }, { data: null }];
+
+  const reviews = (reviewRows ?? []) as unknown as Review[];
+  const hasReviewed = user ? reviews.some((r) => r.user_id === user.id) : false;
+
   const universeLabel =
     siteConfig.navigation.universes.find((u) => u.id === product.universe)
       ?.label ?? product.universe;
@@ -67,7 +94,14 @@ export default async function ProductPage({
 
         <div className="flex flex-col gap-8">
           <div>
-            <h1 className="text-3xl sm:text-4xl">{product.name}</h1>
+            <div className="flex items-start justify-between gap-4">
+              <h1 className="text-3xl sm:text-4xl">{product.name}</h1>
+              <WishlistButton
+                productSlug={product.slug}
+                userId={user?.id ?? null}
+                initialActive={Boolean(wishlistRow)}
+              />
+            </div>
             <p className="mt-2 text-lg font-light text-am-offwhite-muted">
               {formatPrice(product.price)}
             </p>
@@ -125,7 +159,12 @@ export default async function ProductPage({
         </section>
       )}
 
-      <ReviewsSection />
+      <ReviewsSection
+        productSlug={product.slug}
+        reviews={reviews}
+        userId={user?.id ?? null}
+        hasReviewed={hasReviewed}
+      />
     </Container>
   );
 }
