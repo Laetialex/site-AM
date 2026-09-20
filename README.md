@@ -42,7 +42,7 @@ n'est jamais commité.
 Le projet avance par étapes (voir le fil de conversation pour le détail) :
 
 1. ✅ Nettoyage du dépôt, arborescence, fichier de config
-2. ⬜ Design system + header/footer
+2. ✅ Design system + header/footer
 3. ⬜ Porte d'entrée + page d'accueil + catalogue
 4. ⬜ Fiche produit complète
 5. ⬜ Panier, code promo, livraison
