@@ -70,6 +70,11 @@ export async function signUp(
   });
 
   if (error) {
+    if (error.code === "over_email_send_rate_limit") {
+      return {
+        error: "Trop de tentatives d'inscription récentes — réessaie dans quelques minutes.",
+      };
+    }
     return { error: "Impossible de créer ce compte. Cet email est peut-être déjà utilisé." };
   }
 
@@ -97,9 +102,15 @@ export async function requestPasswordReset(
   if (!supabase) return { error: NOT_CONFIGURED_ERROR };
 
   const origin = await getOrigin();
-  await supabase.auth.resetPasswordForEmail(email, {
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${origin}/auth/callback?next=/compte/reinitialiser`,
   });
+
+  if (error?.code === "over_email_send_rate_limit") {
+    return {
+      error: "Trop de demandes récentes — réessaie dans quelques minutes.",
+    };
+  }
 
   // Toujours le même message, qu'un compte existe ou non pour cet email
   // (évite de révéler si une adresse est inscrite).
