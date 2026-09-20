@@ -1,10 +1,12 @@
-import { PagePlaceholder } from "@/components/PagePlaceholder";
+import { siteConfig } from "@/config/site.config";
+import { Catalog } from "@/components/product/Catalog";
 
-export default function Page() {
+export default function AccessoiresPage() {
   return (
-    <PagePlaceholder
+    <Catalog
+      products={siteConfig.products}
+      lockCategory="accessoires"
       title="Accessoires"
-      description="Le catalogue Accessoires avec filtres arrive à l'étape 3."
     />
   );
 }

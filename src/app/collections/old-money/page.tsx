@@ -1,10 +1,14 @@
-import { PagePlaceholder } from "@/components/PagePlaceholder";
+import { siteConfig } from "@/config/site.config";
+import { Catalog } from "@/components/product/Catalog";
 
-export default function Page() {
+export default function OldMoneyPage() {
+  const products = siteConfig.products.filter((p) => p.universe === "old-money");
+
   return (
-    <PagePlaceholder
-      title="Collection Old Money"
-      description="Le catalogue filtré sur l'univers Old Money arrive à l'étape 3."
+    <Catalog
+      products={products}
+      title="Old Money"
+      description="Coupes classiques, matières nobles, esprit intemporel."
     />
   );
 }

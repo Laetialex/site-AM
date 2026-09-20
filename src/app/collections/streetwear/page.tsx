@@ -1,10 +1,14 @@
-import { PagePlaceholder } from "@/components/PagePlaceholder";
+import { siteConfig } from "@/config/site.config";
+import { Catalog } from "@/components/product/Catalog";
 
-export default function Page() {
+export default function StreetwearPage() {
+  const products = siteConfig.products.filter((p) => p.universe === "streetwear");
+
   return (
-    <PagePlaceholder
-      title="Collection Streetwear"
-      description="Le catalogue filtré sur l'univers Streetwear arrive à l'étape 3."
+    <Catalog
+      products={products}
+      title="Streetwear"
+      description="Coupes oversize, pièces signature, esprit rue."
     />
   );
 }

@@ -1,10 +1,16 @@
-import { PagePlaceholder } from "@/components/PagePlaceholder";
+import { siteConfig } from "@/config/site.config";
+import { Catalog } from "@/components/product/Catalog";
 
-export default function Page() {
+export default function NouveautesPage() {
+  const products = [...siteConfig.products].sort(
+    (a, b) => Number(b.isNew) - Number(a.isNew),
+  );
+
   return (
-    <PagePlaceholder
+    <Catalog
+      products={products}
       title="Nouveautés"
-      description="Les derniers produits du drop arriveront ici, avec les filtres du catalogue."
+      description="Les dernières pièces du Drop 01."
     />
   );
 }

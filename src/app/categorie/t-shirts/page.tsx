@@ -1,10 +1,12 @@
-import { PagePlaceholder } from "@/components/PagePlaceholder";
+import { siteConfig } from "@/config/site.config";
+import { Catalog } from "@/components/product/Catalog";
 
-export default function Page() {
+export default function TShirtsPage() {
   return (
-    <PagePlaceholder
+    <Catalog
+      products={siteConfig.products}
+      lockCategory="t-shirts"
       title="T-Shirts"
-      description="Le catalogue T-Shirts avec filtres arrive à l'étape 3."
     />
   );
 }
