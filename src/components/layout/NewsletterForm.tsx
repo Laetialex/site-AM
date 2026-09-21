@@ -29,6 +29,7 @@ export function NewsletterForm() {
           name="email"
           required
           placeholder="Ton email"
+          aria-label="Ton email"
           className="w-full border-b border-am-offwhite/30 bg-transparent py-2 text-sm font-light text-am-offwhite placeholder:text-am-offwhite-muted focus:border-am-gold focus:outline-none"
         />
         <SubmitButton variant="secondary" className="px-5 py-2 whitespace-nowrap">

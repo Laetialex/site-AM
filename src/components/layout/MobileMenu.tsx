@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site.config";
 import { CloseIcon, InstagramIcon, TikTokIcon } from "@/components/icons";
@@ -22,12 +23,31 @@ export function MobileMenu({
   open: boolean;
   onClose: () => void;
 }) {
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    closeButtonRef.current?.focus();
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") onClose();
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open, onClose]);
+
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-am-black">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Menu"
+      className="fixed inset-0 z-50 flex flex-col bg-am-black"
+    >
       <div className="flex items-center justify-end px-6 py-5">
         <button
+          ref={closeButtonRef}
           aria-label="Fermer le menu"
           onClick={onClose}
           className="text-am-offwhite transition-colors hover:text-am-gold"

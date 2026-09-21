@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { Product } from "@/config/site.config";
 import { CloseIcon } from "@/components/icons";
@@ -13,6 +13,18 @@ export function Gallery({ product }: { product: Product }) {
   ];
   const [active, setActive] = useState(0);
   const [zoomed, setZoomed] = useState(false);
+  const zoomCloseRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!zoomed) return;
+    zoomCloseRef.current?.focus();
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setZoomed(false);
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [zoomed]);
 
   return (
     <div className="flex flex-col gap-4">
@@ -51,10 +63,14 @@ export function Gallery({ product }: { product: Product }) {
 
       {zoomed && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={images[active].alt}
           className="fixed inset-0 z-50 flex items-center justify-center bg-am-black/95"
           onClick={() => setZoomed(false)}
         >
           <button
+            ref={zoomCloseRef}
             type="button"
             aria-label="Fermer le zoom"
             onClick={() => setZoomed(false)}

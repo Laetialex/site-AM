@@ -124,6 +124,7 @@ export default function PanierPage() {
                     setPromoError(false);
                   }}
                   placeholder="Code promo"
+                  aria-label="Code promo"
                   aria-invalid={promoError}
                   className="w-full border-b border-am-offwhite/30 bg-transparent py-2 text-sm font-light text-am-offwhite placeholder:text-am-offwhite-muted focus:border-am-gold focus:outline-none"
                 />

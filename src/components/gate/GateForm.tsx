@@ -22,6 +22,7 @@ export function GateForm() {
           type="text"
           required
           placeholder="Prénom"
+          aria-label="Prénom"
           autoComplete="given-name"
           className="w-full border-b border-am-offwhite/30 bg-transparent py-2 text-center text-sm font-light text-am-offwhite placeholder:text-am-offwhite-muted focus:border-am-gold focus:outline-none"
         />
@@ -30,6 +31,7 @@ export function GateForm() {
           type="email"
           required
           placeholder="Email"
+          aria-label="Email"
           autoComplete="email"
           className="w-full border-b border-am-offwhite/30 bg-transparent py-2 text-center text-sm font-light text-am-offwhite placeholder:text-am-offwhite-muted focus:border-am-gold focus:outline-none"
         />

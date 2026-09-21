@@ -35,8 +35,14 @@ body {
     letter-spacing: 0.01em;
   }
 
-  /* Zone de focus visible et cohérente au clavier, sur fond noir. */
-  :focus-visible {
+  /* Zone de focus visible et cohérente au clavier, sur fond noir.
+     Sélecteurs de balise ajoutés pour battre les styles de focus natifs
+     des <button> (spécificité élément + pseudo-classe). */
+  :focus-visible,
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
     outline: 1px solid var(--color-am-gold);
     outline-offset: 3px;
   }

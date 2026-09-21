@@ -38,7 +38,7 @@ export function Header() {
             <button
               aria-label="Ouvrir le menu"
               onClick={() => setMenuOpen(true)}
-              className="text-am-offwhite transition-colors hover:text-am-gold"
+              className="-m-2 p-2 text-am-offwhite transition-colors hover:text-am-gold"
             >
               <MenuIcon />
             </button>
@@ -80,17 +80,18 @@ export function Header() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Rechercher un produit..."
+              aria-label="Rechercher un produit"
               className="w-full border-b border-am-offwhite/30 bg-transparent py-1 text-sm font-light text-am-offwhite placeholder:text-am-offwhite-muted focus:border-am-gold focus:outline-none"
             />
           </form>
         )}
 
-        <div className="flex items-center justify-center gap-6 border-t border-am-gold/10 py-2 text-[11px] tracking-[0.2em] text-am-offwhite-muted uppercase">
+        <div className="flex items-center justify-center gap-6 border-t border-am-gold/10 text-[11px] tracking-[0.2em] text-am-offwhite-muted uppercase">
           {siteConfig.navigation.audiences.map((audience) => (
             <Link
               key={audience.id}
               href={`/nouveautes?public=${audience.id}`}
-              className="transition-colors hover:text-am-gold"
+              className="py-2.5 transition-colors hover:text-am-gold"
             >
               {audience.label}
             </Link>
