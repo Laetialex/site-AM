@@ -8,8 +8,8 @@ précommande uniquement, sans stock permanent.
 - Next.js (App Router) + TypeScript + Tailwind CSS
 - Framer Motion (animations)
 - Supabase (comptes, avis, favoris, newsletter)
-- Stripe Checkout (paiement) — étape 7
-- Resend (emails transactionnels) — étape 7
+- Stripe Checkout (paiement)
+- Resend (emails transactionnels)
 - Déploiement Vercel
 
 ## Configuration du site
@@ -51,6 +51,15 @@ les emails de confirmation/réinitialisation de mot de passe seront bloqués
 en cas de pic d'inscriptions. Se configure dans Supabase sous
 **Authentication → Settings → SMTP Settings**.
 
+## Stripe & Resend
+
+Code prêt (Checkout, webhook, emails de confirmation) mais pas encore testé
+en conditions réelles : les clés secrètes (`STRIPE_SECRET_KEY`,
+`STRIPE_WEBHOOK_SECRET`, `RESEND_API_KEY`, `SUPABASE_SERVICE_ROLE_KEY`)
+seront renseignées directement dans les variables d'environnement Vercel au
+moment du déploiement (étape 10), pas dans ce dépôt ni dans le chat. Les
+noms exacts attendus sont dans `.env.example`.
+
 ## Avancement
 
 Le projet avance par étapes (voir le fil de conversation pour le détail) :
@@ -61,7 +70,7 @@ Le projet avance par étapes (voir le fil de conversation pour le détail) :
 4. ✅ Fiche produit complète
 5. ✅ Panier, code promo, livraison
 6. ✅ Supabase (comptes, favoris, avis, newsletter)
-7. ⬜ Stripe Checkout + webhook + emails
+7. ✅ Stripe Checkout + webhook + emails (code prêt, test en direct à l'étape 10)
 8. ⬜ Compte à rebours + états du drop
 9. ⬜ Pages de contenu (à propos, contact, guide des tailles, légales)
 10. ⬜ Tests, déploiement, mode réel, domaine
