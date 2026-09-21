@@ -72,5 +72,14 @@ Le projet avance par étapes (voir le fil de conversation pour le détail) :
 6. ✅ Supabase (comptes, favoris, avis, newsletter)
 7. ✅ Stripe Checkout + webhook + emails (code prêt, test en direct à l'étape 10)
 8. ✅ Compte à rebours + états du drop
-9. ⬜ Pages de contenu (à propos, contact, guide des tailles, légales)
+9. ✅ Pages de contenu (à propos, contact, guide des tailles, légales)
 10. ⬜ Tests, déploiement, mode réel, domaine
+
+## Pages légales
+
+`mentions-legales` et `cgv` sont des **modèles** avec des informations entre
+crochets (SIRET, adresse...) à remplacer par tes vraies données avant la
+mise en ligne définitive — fais-les relire par un professionnel du droit,
+en particulier la partie droit de rétractation qui a une vraie valeur
+juridique. Le guide des tailles a la même logique : les mesures sont à 0
+dans `site.config.ts`, à remplir avec tes vraies valeurs.

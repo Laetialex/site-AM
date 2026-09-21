@@ -1,10 +1,14 @@
-import { PagePlaceholder } from "@/components/PagePlaceholder";
+import { siteConfig } from "@/config/site.config";
+import { ProsePage } from "@/components/content/ProsePage";
+import { ContactForm } from "@/components/content/ContactForm";
 
-export default function Page() {
+export default function ContactPage() {
   return (
-    <PagePlaceholder
+    <ProsePage
       title="Contact"
-      description="Le formulaire de contact arrive à l'étape 9."
-    />
+      subtitle={`Une question ? Écris-nous — on répond en général sous 48h. Tu peux aussi nous écrire directement à ${siteConfig.brand.contactEmail}.`}
+    >
+      <ContactForm />
+    </ProsePage>
   );
 }

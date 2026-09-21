@@ -70,3 +70,36 @@ export async function sendOrderConfirmationEmail(params: {
     html: renderOrderEmailHtml(params.items, params.amountTotalCents),
   });
 }
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+export async function sendContactEmail(params: {
+  name: string;
+  email: string;
+  message: string;
+}) {
+  const resend = getResend();
+  if (!resend) return false;
+
+  const from = process.env.RESEND_FROM_EMAIL || "AM <onboarding@resend.dev>";
+
+  await resend.emails.send({
+    from,
+    to: siteConfig.brand.contactEmail,
+    replyTo: params.email,
+    subject: `Message du site — ${params.name}`,
+    html: `
+      <div style="font-family:Arial,sans-serif;font-size:14px;color:#111;">
+        <p><strong>De :</strong> ${escapeHtml(params.name)} (${escapeHtml(params.email)})</p>
+        <p style="white-space:pre-wrap;">${escapeHtml(params.message)}</p>
+      </div>`,
+  });
+
+  return true;
+}
