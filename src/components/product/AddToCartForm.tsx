@@ -6,30 +6,39 @@ import { useCart } from "@/lib/cart";
 import { isSoldOut } from "@/lib/product";
 import { Button } from "@/components/ui/Button";
 
-export function AddToCartForm({ product }: { product: Product }) {
+export function AddToCartForm({
+  product,
+  dropEnded = false,
+}: {
+  product: Product;
+  dropEnded?: boolean;
+}) {
   const { addItem } = useCart();
   const [size, setSize] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [justAdded, setJustAdded] = useState(false);
 
   const soldOut = isSoldOut(product);
+  const disabled = dropEnded || soldOut;
   const maxQuantity =
     product.stockDisplayed !== null ? Math.max(product.stockDisplayed, 1) : 10;
 
   function handleAdd() {
-    if (!size || soldOut) return;
+    if (!size || disabled) return;
     addItem(product.slug, size, quantity);
     setJustAdded(true);
     setTimeout(() => setJustAdded(false), 1600);
   }
 
-  const label = soldOut
-    ? "Épuisé"
-    : justAdded
-      ? "Ajouté ✓"
-      : size
-        ? "Ajouter au panier"
-        : "Choisis une taille";
+  const label = dropEnded
+    ? "Drop terminé"
+    : soldOut
+      ? "Épuisé"
+      : justAdded
+        ? "Ajouté ✓"
+        : size
+          ? "Ajouter au panier"
+          : "Choisis une taille";
 
   return (
     <div className="flex flex-col gap-6">
@@ -43,7 +52,7 @@ export function AddToCartForm({ product }: { product: Product }) {
               key={s}
               type="button"
               onClick={() => setSize(s)}
-              disabled={soldOut}
+              disabled={disabled}
               aria-pressed={size === s}
               className={`border px-4 py-2 text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
                 size === s
@@ -65,7 +74,7 @@ export function AddToCartForm({ product }: { product: Product }) {
           <button
             type="button"
             aria-label="Diminuer la quantité"
-            disabled={soldOut || quantity <= 1}
+            disabled={disabled || quantity <= 1}
             onClick={() => setQuantity((q) => Math.max(1, q - 1))}
             className="px-4 py-2 text-am-offwhite transition-colors hover:text-am-gold disabled:cursor-not-allowed disabled:opacity-30"
           >
@@ -75,7 +84,7 @@ export function AddToCartForm({ product }: { product: Product }) {
           <button
             type="button"
             aria-label="Augmenter la quantité"
-            disabled={soldOut || quantity >= maxQuantity}
+            disabled={disabled || quantity >= maxQuantity}
             onClick={() => setQuantity((q) => Math.min(maxQuantity, q + 1))}
             className="px-4 py-2 text-am-offwhite transition-colors hover:text-am-gold disabled:cursor-not-allowed disabled:opacity-30"
           >
@@ -87,7 +96,7 @@ export function AddToCartForm({ product }: { product: Product }) {
       <Button
         type="button"
         onClick={handleAdd}
-        disabled={!size || soldOut}
+        disabled={!size || disabled}
         className="sticky bottom-4 w-full sm:static"
       >
         {label}

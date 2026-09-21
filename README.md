@@ -71,6 +71,6 @@ Le projet avance par étapes (voir le fil de conversation pour le détail) :
 5. ✅ Panier, code promo, livraison
 6. ✅ Supabase (comptes, favoris, avis, newsletter)
 7. ✅ Stripe Checkout + webhook + emails (code prêt, test en direct à l'étape 10)
-8. ⬜ Compte à rebours + états du drop
+8. ✅ Compte à rebours + états du drop
 9. ⬜ Pages de contenu (à propos, contact, guide des tailles, légales)
 10. ⬜ Tests, déploiement, mode réel, domaine

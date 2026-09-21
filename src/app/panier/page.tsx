@@ -6,16 +6,19 @@ import { useCart } from "@/lib/cart";
 import { findPromoCode, computeDiscount } from "@/lib/promo";
 import { computeShipping } from "@/lib/shipping";
 import { formatPrice } from "@/lib/format";
+import { isDropEnded } from "@/lib/drop";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { PaymentLogos } from "@/components/PaymentLogos";
 import { CartLineItem } from "@/components/cart/CartLineItem";
 import { CheckoutButton } from "@/components/cart/CheckoutButton";
+import { NewsletterForm } from "@/components/layout/NewsletterForm";
 
 export default function PanierPage() {
   const { items, promoCode, updateQuantity, removeItem, setPromoCode } = useCart();
   const [promoInput, setPromoInput] = useState("");
   const [promoError, setPromoError] = useState(false);
+  const dropEnded = isDropEnded();
 
   const lines = items.flatMap((item) => {
     const product = siteConfig.products.find((p) => p.slug === item.slug);
@@ -138,11 +141,26 @@ export default function PanierPage() {
 
           <PaymentLogos className="justify-center border-t border-am-gold/15 pt-4" />
 
-          <CheckoutButton items={items} promoCode={promo?.code ?? null} />
-          <p className="text-center text-xs font-light text-am-offwhite-muted">
-            Précommande — livraison estimée sous {siteConfig.drop.estimatedDeliveryWeeks}{" "}
-            semaines.
-          </p>
+          {dropEnded ? (
+            <div className="flex flex-col gap-3 border-t border-am-gold/15 pt-4 text-center">
+              <p className="text-sm text-am-gold">{siteConfig.drop.endedTitle}</p>
+              <p className="text-xs font-light text-am-offwhite-muted">
+                {siteConfig.drop.endedMessage}
+              </p>
+              <Button type="button" disabled className="w-full">
+                Passer au paiement
+              </Button>
+              <NewsletterForm />
+            </div>
+          ) : (
+            <>
+              <CheckoutButton items={items} promoCode={promo?.code ?? null} />
+              <p className="text-center text-xs font-light text-am-offwhite-muted">
+                Précommande — livraison estimée sous{" "}
+                {siteConfig.drop.estimatedDeliveryWeeks} semaines.
+              </p>
+            </>
+          )}
         </div>
       </div>
     </Container>

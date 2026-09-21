@@ -14,6 +14,7 @@ import { ProductCard } from "@/components/product/ProductCard";
 import { Reveal } from "@/components/motion/Reveal";
 import { availabilityLabel, isSoldOut } from "@/lib/product";
 import { formatPrice } from "@/lib/format";
+import { isDropEnded } from "@/lib/drop";
 
 function findProduct(slug: string) {
   return siteConfig.products.find((p) => p.slug === slug);
@@ -65,6 +66,7 @@ export default async function ProductPage({
 
   const reviews = (reviewRows ?? []) as unknown as Review[];
   const hasReviewed = user ? reviews.some((r) => r.user_id === user.id) : false;
+  const dropEnded = isDropEnded();
 
   const universeLabel =
     siteConfig.navigation.universes.find((u) => u.id === product.universe)
@@ -114,18 +116,22 @@ export default async function ProductPage({
           <div className="flex flex-col gap-1 text-sm">
             <span
               className={
-                isSoldOut(product) ? "text-am-offwhite-muted" : "text-am-gold"
+                dropEnded || isSoldOut(product)
+                  ? "text-am-offwhite-muted"
+                  : "text-am-gold"
               }
             >
-              {availabilityLabel(product, { long: true })}
+              {dropEnded ? siteConfig.drop.endedTitle : availabilityLabel(product, { long: true })}
             </span>
-            <span className="text-am-offwhite-muted">
-              Précommande — livraison estimée sous{" "}
-              {siteConfig.drop.estimatedDeliveryWeeks} semaines.
-            </span>
+            {!dropEnded && (
+              <span className="text-am-offwhite-muted">
+                Précommande — livraison estimée sous{" "}
+                {siteConfig.drop.estimatedDeliveryWeeks} semaines.
+              </span>
+            )}
           </div>
 
-          <AddToCartForm product={product} />
+          <AddToCartForm product={product} dropEnded={dropEnded} />
 
           <div className="border-t border-am-gold/15 pt-6 text-xs font-light text-am-offwhite-muted">
             <p>

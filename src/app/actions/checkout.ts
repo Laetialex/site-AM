@@ -7,6 +7,7 @@ import { findPromoCode, computeDiscount } from "@/lib/promo";
 import { computeShipping } from "@/lib/shipping";
 import { createClient } from "@/lib/supabase/server";
 import { getOrigin } from "@/lib/origin";
+import { isDropEnded } from "@/lib/drop";
 import type { CartItem } from "@/lib/cart";
 
 export type CheckoutState = { error?: string };
@@ -17,6 +18,10 @@ export async function createCheckoutSession(
 ): Promise<CheckoutState> {
   if (!stripeConfigured) {
     return { error: "Le paiement n'est pas encore activé sur ce site." };
+  }
+
+  if (isDropEnded()) {
+    return { error: `${siteConfig.drop.endedTitle} — ${siteConfig.drop.endedMessage}` };
   }
 
   if (items.length === 0) {
