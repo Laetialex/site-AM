@@ -4,7 +4,7 @@ import { formatPrice } from "@/lib/format";
 
 export const resendConfigured = Boolean(process.env.RESEND_API_KEY);
 
-function getResend() {
+export function getResend() {
   if (!resendConfigured) return null;
   return new Resend(process.env.RESEND_API_KEY);
 }
@@ -69,6 +69,37 @@ export async function sendOrderConfirmationEmail(params: {
     subject: "Ta précommande AM est confirmée",
     html: renderOrderEmailHtml(params.items, params.amountTotalCents),
   });
+}
+
+export function renderOfferEmailHtml(params: {
+  body: string;
+  unsubscribeUrl: string;
+}) {
+  const paragraphs = params.body
+    .split(/\n+/)
+    .filter(Boolean)
+    .map(
+      (line) =>
+        `<p style="color:#F5F1E8;font-family:Georgia,serif;font-size:15px;line-height:1.7;margin:0 0 16px;">${escapeHtml(line)}</p>`,
+    )
+    .join("");
+
+  return `
+    <div style="background:#000000;padding:40px 20px;">
+      <div style="max-width:480px;margin:0 auto;">
+        <p style="text-align:center;color:#C9A96E;letter-spacing:4px;font-family:Arial,sans-serif;font-size:12px;text-transform:uppercase;">
+          ${siteConfig.brand.name}
+        </p>
+        <div style="margin-top:24px;">
+          ${paragraphs}
+        </div>
+        <p style="text-align:center;color:#6b6558;font-family:Arial,sans-serif;font-size:11px;margin-top:40px;">
+          Tu reçois cet email parce que tu as commandé chez ${siteConfig.brand.fullName}.
+          <br/>
+          <a href="${params.unsubscribeUrl}" style="color:#6b6558;">Se désinscrire</a>
+        </p>
+      </div>
+    </div>`;
 }
 
 function escapeHtml(value: string) {
