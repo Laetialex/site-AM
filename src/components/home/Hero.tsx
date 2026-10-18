@@ -52,12 +52,12 @@ export function Hero() {
               <p className="text-xs tracking-[0.1em] text-am-offwhite-muted uppercase">
                 Précommande ouverte le {formatDropDate(siteConfig.drop.startDate)}
               </p>
-            ) : (
+            ) : siteConfig.drop.showCountdown ? (
               <Countdown
                 targetDate={siteConfig.drop.endDate}
                 initialRemainingMs={endMs}
               />
-            )}
+            ) : null}
 
             <Button href="#drop-01" className="mt-2">
               {siteConfig.drop.heroCtaLabel}

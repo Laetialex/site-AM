@@ -71,7 +71,7 @@ export const siteConfig = {
 
   /** Porte d'entrée prénom + email avant d'accéder au site. */
   gate: {
-    enabled: true,
+    enabled: false,
     title: "Bienvenue chez AM",
     subtitle: "Entre ton prénom et ton email pour découvrir le drop.",
   },
@@ -83,6 +83,9 @@ export const siteConfig = {
     startDate: "2026-09-20T00:00:00+02:00",
     endDate: "2026-10-20T23:59:59+02:00",
     estimatedDeliveryWeeks: 6,
+    // Affiche le compte à rebours sur la page d'accueil. Passe à true pour
+    // le réactiver (ex. juste avant la fin du drop).
+    showCountdown: false,
     heroTagline: "La première collection AM. Précommande limitée.",
     heroCtaLabel: "Découvrir le drop",
     endedTitle: "Drop terminé",
