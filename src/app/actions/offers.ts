@@ -53,7 +53,8 @@ export async function generateOfferEmail(
       return { error: "Réponse IA vide, réessaie." };
     }
     raw = textBlock.text.trim();
-  } catch {
+  } catch (err) {
+    console.error("Erreur génération email IA :", err);
     return { error: "Erreur lors de la génération, réessaie dans un instant." };
   }
 
