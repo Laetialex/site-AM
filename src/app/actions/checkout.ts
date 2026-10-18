@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import type Stripe from "stripe";
 import { siteConfig } from "@/config/site.config";
 import { getStripe, stripeConfigured } from "@/lib/stripe";
 import { findPromoCode, computeDiscount } from "@/lib/promo";
@@ -51,7 +52,7 @@ export async function createCheckoutSession(
   const supabase = await createClient();
   const user = supabase ? (await supabase.auth.getUser()).data.user : null;
 
-  const line_items = lines.map(({ item, product }) => ({
+  const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = lines.map(({ item, product }) => ({
     quantity: item.quantity,
     price_data: {
       currency: "eur",
@@ -69,7 +70,7 @@ export async function createCheckoutSession(
       price_data: {
         currency: "eur",
         unit_amount: Math.round(shipping * 100),
-        product_data: { name: "Livraison", description: "" },
+        product_data: { name: "Livraison" },
       },
     });
   }
@@ -80,28 +81,34 @@ export async function createCheckoutSession(
     .map(({ item }) => `${item.slug}:${item.size}:${item.quantity}`)
     .join(",");
 
-  const session = await stripe.checkout.sessions.create({
-    mode: "payment",
-    line_items,
-    success_url: `${origin}/checkout/confirmation?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${origin}/panier`,
-    customer_email: user?.email,
-    client_reference_id: user?.id,
-    shipping_address_collection: {
-      allowed_countries: siteConfig.shipping.allowedCountries as Array<
-        "FR" | "BE" | "CH" | "LU" | "MC"
-      >,
-    },
-    metadata: {
-      items: itemsMetadata,
-      promo_code: promo?.code ?? "",
-      user_id: user?.id ?? "",
-    },
-  });
+  let sessionUrl: string | null;
+  try {
+    const session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      line_items,
+      success_url: `${origin}/checkout/confirmation?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/panier`,
+      customer_email: user?.email,
+      client_reference_id: user?.id,
+      shipping_address_collection: {
+        allowed_countries: siteConfig.shipping.allowedCountries as Array<
+          "FR" | "BE" | "CH" | "LU" | "MC"
+        >,
+      },
+      metadata: {
+        items: itemsMetadata,
+        promo_code: promo?.code ?? "",
+        user_id: user?.id ?? "",
+      },
+    });
+    sessionUrl = session.url;
+  } catch {
+    return { error: "Erreur de paiement, réessaie dans un instant." };
+  }
 
-  if (!session.url) {
+  if (!sessionUrl) {
     return { error: "Impossible de créer la session de paiement." };
   }
 
-  redirect(session.url);
+  redirect(sessionUrl);
 }
