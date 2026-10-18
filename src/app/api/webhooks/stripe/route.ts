@@ -67,6 +67,17 @@ export async function POST(request: NextRequest) {
       if (error && error.code !== "23505") {
         console.error("Erreur enregistrement commande Supabase :", error);
       }
+
+      // Ajoute l'acheteur à la liste des emails promo (étape 11). onConflict
+      // ignore les doublons si la personne a déjà commandé ou est déjà abonnée.
+      if (email) {
+        const { error: newsletterError } = await admin
+          .from("newsletter_subscribers")
+          .upsert({ email }, { onConflict: "email", ignoreDuplicates: true });
+        if (newsletterError) {
+          console.error("Erreur ajout liste email promo :", newsletterError);
+        }
+      }
     }
 
     if (email) {
