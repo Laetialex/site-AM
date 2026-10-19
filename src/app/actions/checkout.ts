@@ -45,7 +45,10 @@ export async function createCheckoutSession(
   const promo = findPromoCode(promoCode ?? "");
   const discount = computeDiscount(subtotal, promo);
   const ratio = subtotal > 0 ? (subtotal - discount) / subtotal : 1;
-  const shipping = computeShipping(subtotal);
+  const shipping = computeShipping(
+    subtotal,
+    lines.map(({ item }) => item.slug),
+  );
 
   const stripe = getStripe()!;
   const origin = await getOrigin();
@@ -92,7 +95,7 @@ export async function createCheckoutSession(
       client_reference_id: user?.id,
       shipping_address_collection: {
         allowed_countries: siteConfig.shipping.allowedCountries as Array<
-          "FR" | "BE" | "CH" | "LU" | "MC"
+          Stripe.Checkout.SessionCreateParams.ShippingAddressCollection.AllowedCountry
         >,
       },
       metadata: {

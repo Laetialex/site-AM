@@ -44,7 +44,7 @@ function renderOrderEmailHtml(items: OrderEmailItem[], amountTotalCents: number)
         </h1>
         <p style="text-align:center;color:#9a9488;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;">
           Merci pour ta précommande. Livraison estimée sous
-          ${siteConfig.drop.estimatedDeliveryWeeks} semaines.
+          ${siteConfig.drop.estimatedDeliveryText}.
         </p>
         <table style="width:100%;border-collapse:collapse;margin-top:24px;">
           ${rows}

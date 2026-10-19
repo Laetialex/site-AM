@@ -43,8 +43,7 @@ export default function Home() {
             </p>
             <h2 className="text-4xl sm:text-5xl">La première collection</h2>
             <p className="max-w-md text-sm font-light text-am-offwhite-muted">
-              Précommande — livraison estimée sous{" "}
-              {siteConfig.drop.estimatedDeliveryWeeks} semaines.
+              Précommande — livraison estimée sous {siteConfig.drop.estimatedDeliveryText}.
             </p>
           </Reveal>
 

@@ -38,12 +38,13 @@ export default function CgvPage() {
 
       <h2>4. Livraison</h2>
       <p>
-        Livraison estimée sous {siteConfig.drop.estimatedDeliveryWeeks}{" "}
-        semaines à compter de la clôture du drop, vers les zones précisées
-        en page{" "}
+        Livraison estimée sous {siteConfig.drop.estimatedDeliveryText} à
+        compter de la clôture du drop, vers les zones précisées en page{" "}
         <Link href="/livraison-retours">Livraison &amp; retours</Link>. Frais de
         port : {formatPrice(siteConfig.shipping.flatRate)}, offerts dès{" "}
-        {formatPrice(siteConfig.shipping.freeAboveAmount)} d&apos;achat.
+        {formatPrice(siteConfig.shipping.freeAboveAmount)} d&apos;achat, ou
+        gratuits si tu commandes le t-shirt Build Your Life et le sweat
+        Heritage Excellence ensemble.
       </p>
 
       <h2>5. Droit de rétractation</h2>
