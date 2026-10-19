@@ -169,7 +169,7 @@ export const siteConfig = {
       sizes: ["S", "M", "L", "XL"],
       images: {
         face: "/images/products/tshirt-build-your-life-face.webp",
-        porte: "/images/products/tshirt-build-your-life-face.webp",
+        porte: "/images/products/tshirt-build-your-life-porte.webp",
         detail: "/images/products/tshirt-build-your-life-detail.webp",
       },
       stockDisplayed: null,
@@ -209,7 +209,7 @@ export const siteConfig = {
       sizes: ["S", "M", "L", "XL"],
       images: {
         face: "/images/products/sweat-heritage-excellence-face.webp",
-        porte: "/images/products/sweat-heritage-excellence-face.webp",
+        porte: "/images/products/sweat-heritage-excellence-porte.webp",
         detail: "/images/products/sweat-heritage-excellence-detail.webp",
       },
       stockDisplayed: null,
