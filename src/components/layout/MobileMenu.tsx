@@ -12,7 +12,6 @@ const links = [
   { href: "/collections/streetwear", label: "— Streetwear", indent: true },
   { href: "/categorie/t-shirts", label: "T-Shirts" },
   { href: "/categorie/sweats", label: "Sweats" },
-  { href: "/categorie/accessoires", label: "Accessoires" },
   { href: "/a-propos", label: "À propos" },
   { href: "/contact", label: "Contact" },
 ];
