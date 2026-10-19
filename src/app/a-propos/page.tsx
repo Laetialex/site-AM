@@ -3,7 +3,7 @@ import { ProsePage } from "@/components/content/ProsePage";
 // Texte de placeholder — à réécrire avec la vraie histoire de la marque.
 export default function AProposPage() {
   return (
-    <ProsePage title="À propos" subtitle="All Money — deux univers, une exigence.">
+    <ProsePage title="À propos" subtitle="AM — deux univers, une exigence.">
       <p>
         AM est née d&apos;une idée simple : le streetwear peut être précis.
         Coupes travaillées, matières lourdes, finitions soignées — la même

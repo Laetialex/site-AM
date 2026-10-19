@@ -57,11 +57,10 @@ export interface PromoCode {
 export const siteConfig = {
   brand: {
     name: "AM",
-    fullName: "All Money",
-    tagline: "All Money — Streetwear premium",
+    tagline: "AM — Streetwear premium",
     // Résumé utilisé dans les métadonnées (SEO, partages sociaux).
     description:
-      "AM (All Money) — vêtements streetwear premium en précommande. Édition limitée, sans stock permanent.",
+      "AM — vêtements streetwear premium en précommande. Édition limitée, sans stock permanent.",
     social: {
       instagram: "https://instagram.com/allmoney", // à remplacer par le vrai compte
       tiktok: "https://tiktok.com/@allmoney", // à remplacer par le vrai compte

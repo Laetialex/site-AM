@@ -47,7 +47,7 @@ function renderOrderEmailHtml(items: OrderEmailItem[], amountTotalCents: number)
           Total : ${formatPrice(amountTotalCents / 100)}
         </p>
         <p style="text-align:center;color:#9a9488;font-family:Arial,sans-serif;font-size:12px;margin-top:40px;">
-          ${siteConfig.brand.fullName} — des questions ? ${siteConfig.brand.contactEmail}
+          ${siteConfig.brand.name} — des questions ? ${siteConfig.brand.contactEmail}
         </p>
       </div>
     </div>`;
@@ -94,7 +94,7 @@ export function renderOfferEmailHtml(params: {
           ${paragraphs}
         </div>
         <p style="text-align:center;color:#6b6558;font-family:Arial,sans-serif;font-size:11px;margin-top:40px;">
-          Tu reçois cet email parce que tu as commandé chez ${siteConfig.brand.fullName}.
+          Tu reçois cet email parce que tu as commandé chez ${siteConfig.brand.name}.
           <br/>
           <a href="${params.unsubscribeUrl}" style="color:#6b6558;">Se désinscrire</a>
         </p>
