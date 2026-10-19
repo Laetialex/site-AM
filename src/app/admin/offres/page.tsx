@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { ADMIN_COOKIE } from "@/lib/admin";
 import { OfferComposer } from "@/components/admin/OfferComposer";
 import { logoutAdmin } from "@/app/actions/admin";
@@ -12,6 +13,14 @@ export default async function AdminOffersPage() {
 
   return (
     <div className="relative">
+      <div className="absolute left-6 top-6 flex gap-4">
+        <Link
+          href="/admin/commandes"
+          className="text-xs tracking-[0.1em] text-am-offwhite-muted uppercase underline underline-offset-4 hover:text-am-offwhite"
+        >
+          Commandes
+        </Link>
+      </div>
       <form action={logoutAdmin} className="absolute right-6 top-6">
         <button
           type="submit"
