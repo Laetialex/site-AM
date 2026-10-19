@@ -8,8 +8,8 @@
  */
 
 export type Universe = "old-money" | "streetwear";
-export type ProductCategory = "t-shirts" | "accessoires";
-export type Audience = "homme" | "femme" | "enfant" | "mixte";
+export type ProductCategory = "t-shirts" | "sweats" | "accessoires";
+export type Audience = "homme" | "femme" | "mixte";
 
 export interface ProductImages {
   /** Photo produit seul, de face. */
@@ -95,7 +95,6 @@ export const siteConfig = {
     audiences: [
       { id: "homme" as Audience, label: "Homme" },
       { id: "femme" as Audience, label: "Femme" },
-      { id: "enfant" as Audience, label: "Enfant" },
     ],
     universes: [
       { id: "old-money" as Universe, label: "Old Money" },
@@ -103,6 +102,7 @@ export const siteConfig = {
     ],
     categories: [
       { id: "t-shirts" as ProductCategory, label: "T-Shirts" },
+      { id: "sweats" as ProductCategory, label: "Sweats" },
       { id: "accessoires" as ProductCategory, label: "Accessoires" },
     ],
   },
@@ -200,7 +200,7 @@ export const siteConfig = {
       slug: "sweat-heritage-excellence",
       name: "Sweat Heritage Excellence",
       universe: "old-money",
-      category: "t-shirts",
+      category: "sweats",
       audience: "mixte",
       price: 34.99,
       shortDescription: "Sweat marine, écusson AM brodé, sérigraphie dos \"Heritage Inspires Excellence\".",
