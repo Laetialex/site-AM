@@ -3,7 +3,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { GATE_COOKIE } from "@/lib/gate";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient, supabaseAdminConfigured } from "@/lib/supabase/admin";
 
 const ONE_YEAR = 60 * 60 * 24 * 365;
 
@@ -21,12 +21,15 @@ export async function submitGate(formData: FormData) {
     redirect("/");
   }
 
-  const supabase = await createClient();
-  if (supabase) {
+  if (supabaseAdminConfigured) {
+    const admin = createAdminClient()!;
     // onConflict: une même adresse qui repasse la porte ne crée pas de doublon.
-    await supabase
+    const { error } = await admin
       .from("gate_signups")
       .upsert({ prenom, email }, { onConflict: "email", ignoreDuplicates: true });
+    if (error) {
+      console.error("Erreur enregistrement gate_signups :", error);
+    }
   }
 
   const cookieStore = await cookies();
