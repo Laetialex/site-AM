@@ -162,9 +162,9 @@ export const siteConfig = {
       category: "t-shirts",
       audience: "mixte",
       price: 24.99,
-      shortDescription: "T-shirt noir, logo rose AM brodé, sérigraphie dos vintage.",
+      shortDescription: "T-shirt noir, logo rose AM en flocage, DTF dos vintage.",
       description:
-        "T-shirt noir uni, petit logo AM brodé façon rose sur la poitrine, sérigraphie \"Build Your Life\" au dos avec illustration automobile vintage et devise Old Money. Une pièce signature entre discrétion et déclaration.",
+        "T-shirt noir uni, petit logo AM en flocage façon rose sur la poitrine, impression DTF \"Build Your Life\" au dos avec illustration automobile vintage et devise Old Money. Une pièce signature entre discrétion et déclaration.",
       sizes: ["S", "M", "L", "XL"],
       images: {
         face: "/images/products/tshirt-build-your-life-face.webp",
@@ -182,9 +182,9 @@ export const siteConfig = {
       category: "sweats",
       audience: "mixte",
       price: 34.99,
-      shortDescription: "Sweat marine, écusson AM brodé, sérigraphie dos \"Heritage Inspires Excellence\".",
+      shortDescription: "Sweat marine, écusson AM et sérigraphie dos \"Heritage Inspires Excellence\".",
       description:
-        "Sweat col rond marine, écusson AM brodé façon blason sur la poitrine, sérigraphie \"Heritage Inspires Excellence\" au dos. Coupe droite, matière épaisse, pour les jours où la discrétion fait l'allure.",
+        "Sweat col rond marine, écusson AM sérigraphié façon blason sur la poitrine, sérigraphie \"Heritage Inspires Excellence\" au dos. Coupe droite, matière épaisse, pour les jours où la discrétion fait l'allure.",
       sizes: ["S", "M", "L", "XL"],
       images: {
         face: "/images/products/sweat-heritage-excellence-face.webp",
