@@ -86,7 +86,7 @@ export const siteConfig = {
     // le réactiver (ex. juste avant la fin du drop).
     showCountdown: false,
     heroTagline: "La première collection AM. Précommande limitée.",
-    heroCtaLabel: "Découvrir le drop",
+    heroCtaLabel: "Découvrir la collection",
     endedTitle: "Drop terminé",
     endedMessage: "Prochain drop bientôt. Inscris-toi pour être prévenu·e en premier.",
   },
