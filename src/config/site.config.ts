@@ -8,7 +8,7 @@
  */
 
 export type Universe = "old-money" | "streetwear";
-export type ProductCategory = "t-shirts" | "sweats" | "accessoires";
+export type ProductCategory = "t-shirts" | "sweats";
 export type Audience = "homme" | "femme" | "mixte";
 
 export interface ProductImages {
@@ -103,7 +103,6 @@ export const siteConfig = {
     categories: [
       { id: "t-shirts" as ProductCategory, label: "T-Shirts" },
       { id: "sweats" as ProductCategory, label: "Sweats" },
-      { id: "accessoires" as ProductCategory, label: "Accessoires" },
     ],
   },
 
@@ -177,26 +176,6 @@ export const siteConfig = {
       isFeaturedInDrop: true,
     },
     {
-      slug: "echarpe-laine-signature",
-      name: "Écharpe en Laine Signature",
-      universe: "old-money",
-      category: "accessoires",
-      audience: "mixte",
-      price: 45,
-      shortDescription: "Écharpe en laine mélangée, monogramme tissé.",
-      description:
-        "Écharpe épaisse en laine mélangée, finitions franges, monogramme AM tissé aux extrémités. Taille unique.",
-      sizes: ["Taille unique"],
-      images: {
-        face: "/images/products/echarpe-laine-signature-face.svg",
-        porte: "/images/products/echarpe-laine-signature-porte.svg",
-        detail: "/images/products/echarpe-laine-signature-detail.svg",
-      },
-      stockDisplayed: 15,
-      isNew: false,
-      isFeaturedInDrop: true,
-    },
-    {
       slug: "sweat-heritage-excellence",
       name: "Sweat Heritage Excellence",
       universe: "old-money",
@@ -216,27 +195,7 @@ export const siteConfig = {
       isNew: true,
       isFeaturedInDrop: true,
     },
-    {
-      slug: "casquette-brodee-am",
-      name: "Casquette Brodée AM",
-      universe: "streetwear",
-      category: "accessoires",
-      audience: "mixte",
-      price: 40,
-      shortDescription: "Casquette 6 panneaux, logo AM brodé, strap ajustable.",
-      description:
-        "Casquette structurée 6 panneaux, logo AM brodé en relief, strap arrière ajustable avec boucle métal gravée.",
-      sizes: ["Taille unique"],
-      images: {
-        face: "/images/products/casquette-brodee-am-face.svg",
-        porte: "/images/products/casquette-brodee-am-porte.svg",
-        detail: "/images/products/casquette-brodee-am-detail.svg",
-      },
-      stockDisplayed: 0,
-      isNew: false,
-      isFeaturedInDrop: false,
-    },
-  ] satisfies Product[],
+  ] satisfies Product[] as Product[],
 };
 
 export type SiteConfig = typeof siteConfig;
