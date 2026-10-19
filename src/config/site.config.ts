@@ -62,8 +62,8 @@ export const siteConfig = {
     description:
       "AM — vêtements streetwear premium en précommande. Édition limitée, sans stock permanent.",
     social: {
-      instagram: "https://instagram.com/allmoney", // à remplacer par le vrai compte
-      tiktok: "https://tiktok.com/@allmoney", // à remplacer par le vrai compte
+      instagram: "https://instagram.com/am.society.official",
+      tiktok: "https://tiktok.com/@am.society.official",
     },
     contactEmail: "contact@allmoney.example", // à remplacer
   },
