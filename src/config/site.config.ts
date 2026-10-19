@@ -65,7 +65,7 @@ export const siteConfig = {
       instagram: "https://instagram.com/am.society.official",
       tiktok: "https://tiktok.com/@am.society.official",
     },
-    contactEmail: "contact@allmoney.example", // à remplacer
+    contactEmail: "alexandremusto69@gmail.com",
   },
 
   /** Porte d'entrée prénom + email avant d'accéder au site. */
