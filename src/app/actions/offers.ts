@@ -42,9 +42,9 @@ export async function generateOfferEmail(
   try {
     const message = await anthropic.messages.create({
       model: "claude-opus-5-5",
-      max_tokens: 1024,
+      max_tokens: 2048,
       output_config: { effort: "low" },
-      system: `Tu rédiges des emails marketing courts pour ${siteConfig.brand.fullName} (marque "${siteConfig.brand.name}"), une marque de streetwear premium au ton sobre, élégant, direct — jamais de superlatifs excessifs ni d'emojis. Réponds UNIQUEMENT avec un objet JSON strict de la forme {"subject": "...", "body": "..."}. "subject" est l'objet de l'email (court, percutant). "body" est le texte de l'email en français, 3 à 5 phrases courtes, sans balises HTML, sans salutation ni signature (celles-ci sont ajoutées automatiquement par le template).`,
+      system: `Tu rédiges des emails marketing pour ${siteConfig.brand.fullName} (marque "${siteConfig.brand.name}"), une marque de streetwear premium au ton sobre, élégant, direct — jamais de superlatifs excessifs ni d'emojis. Réponds UNIQUEMENT avec un objet JSON strict de la forme {"subject": "...", "body": "..."}. "subject" est l'objet de l'email (court, percutant). "body" est le texte de l'email en français, sans balises HTML, sans salutation ni signature (celles-ci sont ajoutées automatiquement par le template). Par défaut reste concis (3 à 5 phrases courtes) ; si la demande précise une longueur ou un niveau de détail différent (ex. "en 15 phrases", "plus détaillé", "version longue"), respecte-la précisément.`,
       messages: [{ role: "user", content: `Rédige un email annonçant : ${brief}` }],
     });
 
