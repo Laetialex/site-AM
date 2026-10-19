@@ -10,7 +10,7 @@ import { CartProvider } from "@/lib/cart";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.brand.name} — ${siteConfig.brand.fullName}`,
+  title: siteConfig.brand.tagline,
   description: siteConfig.brand.description,
 };
 

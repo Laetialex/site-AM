@@ -76,7 +76,7 @@ export function Footer() {
       <div className="border-t border-am-gold/10">
         <Container className="flex flex-col items-center justify-between gap-4 py-6 sm:flex-row">
           <p className="text-xs font-light text-am-offwhite-muted">
-            © {new Date().getFullYear()} {siteConfig.brand.fullName}. Tous
+            © {new Date().getFullYear()} {siteConfig.brand.name}. Tous
             droits réservés.
           </p>
           <PaymentLogos />
