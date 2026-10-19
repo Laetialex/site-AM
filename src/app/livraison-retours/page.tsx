@@ -15,8 +15,8 @@ export default function LivraisonRetoursPage() {
       <p>
         Le drop actuel fonctionne en précommande : aucune pièce n&apos;est en
         stock, la production démarre après la fin des précommandes.
-        Livraison estimée sous {drop.estimatedDeliveryWeeks} semaines à
-        compter de la clôture du drop.
+        Livraison estimée sous {drop.estimatedDeliveryText} à compter de la
+        clôture du drop.
       </p>
 
       <h2>Frais de port</h2>
@@ -26,9 +26,14 @@ export default function LivraisonRetoursPage() {
         d&apos;acheminement estimé : {shipping.estimatedDays} après
         expédition.
       </p>
+      <p className="rounded border border-am-gold/30 p-4 text-am-gold">
+        Offre en cours : livraison <strong>gratuite</strong> si tu commandes
+        le t-shirt Build Your Life et le sweat Heritage Excellence ensemble,
+        quel que soit le montant total.
+      </p>
 
       <h2>Zones de livraison</h2>
-      <p>Nous livrons actuellement : {countryList}.</p>
+      <p>Nous livrons actuellement dans toute l&apos;Europe : {countryList}.</p>
 
       <h2>Droit de rétractation</h2>
       <p>

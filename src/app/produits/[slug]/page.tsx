@@ -126,7 +126,7 @@ export default async function ProductPage({
             {!dropEnded && (
               <span className="text-am-offwhite-muted">
                 Précommande — livraison estimée sous{" "}
-                {siteConfig.drop.estimatedDeliveryWeeks} semaines.
+                {siteConfig.drop.estimatedDeliveryText}.
               </span>
             )}
           </div>
@@ -138,7 +138,8 @@ export default async function ProductPage({
               Livraison {siteConfig.shipping.estimatedDays} après expédition
               du drop. Frais de port {formatPrice(siteConfig.shipping.flatRate)}
               , offerts dès {formatPrice(siteConfig.shipping.freeAboveAmount)}{" "}
-              d&apos;achat.
+              d&apos;achat — ou gratuits si tu prends le t-shirt Build Your
+              Life et le sweat Heritage Excellence ensemble.
             </p>
             <Link
               href="/livraison-retours"

@@ -64,7 +64,7 @@ export default async function ConfirmationPage({
       <p className="max-w-md text-sm font-light text-am-offwhite-muted">
         Merci ! Un email de confirmation vient d&apos;être envoyé à{" "}
         {session.customer_details?.email}. Précommande — livraison estimée
-        sous {siteConfig.drop.estimatedDeliveryWeeks} semaines.
+        sous {siteConfig.drop.estimatedDeliveryText}.
       </p>
 
       <div className="flex w-full max-w-sm flex-col gap-3 border border-am-gold/15 p-6 text-left">

@@ -28,7 +28,10 @@ export default function PanierPage() {
   const subtotal = lines.reduce((sum, { item, product }) => sum + product.price * item.quantity, 0);
   const promo = findPromoCode(promoCode ?? "");
   const discount = computeDiscount(subtotal, promo);
-  const shipping = computeShipping(subtotal);
+  const shipping = computeShipping(
+    subtotal,
+    lines.map(({ item }) => item.slug),
+  );
   const total = subtotal - discount + shipping;
 
   function handleApplyPromo(event: React.FormEvent) {
@@ -93,7 +96,8 @@ export default function PanierPage() {
             </div>
             {shipping > 0 && (
               <p className="text-xs text-am-offwhite-muted">
-                Offerte dès {formatPrice(siteConfig.shipping.freeAboveAmount)} d&apos;achat.
+                Offerte dès {formatPrice(siteConfig.shipping.freeAboveAmount)} d&apos;achat, ou en
+                prenant le t-shirt Build Your Life et le sweat Heritage Excellence ensemble.
               </p>
             )}
             <div className="mt-2 flex justify-between border-t border-am-gold/15 pt-2 text-base text-am-offwhite">
@@ -158,7 +162,7 @@ export default function PanierPage() {
               <CheckoutButton items={items} promoCode={promo?.code ?? null} />
               <p className="text-center text-xs font-light text-am-offwhite-muted">
                 Précommande — livraison estimée sous{" "}
-                {siteConfig.drop.estimatedDeliveryWeeks} semaines.
+                {siteConfig.drop.estimatedDeliveryText}.
               </p>
             </>
           )}

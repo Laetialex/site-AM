@@ -81,7 +81,8 @@ export const siteConfig = {
     // Dates au format ISO 8601, fuseau Europe/Paris implicite.
     startDate: "2026-09-20T00:00:00+02:00",
     endDate: "2026-10-20T23:59:59+02:00",
-    estimatedDeliveryWeeks: 6,
+    // Texte affiché partout où le délai de livraison estimé est mentionné.
+    estimatedDeliveryText: "3 semaines à 1 mois",
     // Affiche le compte à rebours sur la page d'accueil. Passe à true pour
     // le réactiver (ex. juste avant la fin du drop).
     showCountdown: false,
@@ -107,12 +108,19 @@ export const siteConfig = {
   },
 
   shipping: {
-    flatRate: 4.9,
+    flatRate: 2,
     freeAboveAmount: 120,
+    // Livraison offerte si le panier contient tous ces produits (indépendamment
+    // du montant) — actuellement : le t-shirt + le sweat ensemble.
+    freeWithAllProducts: ["t-shirt-build-your-life", "sweat-heritage-excellence"],
     estimatedDays: "3 à 5 jours ouvrés",
     // Codes pays ISO 3166-1 alpha-2 — Stripe Checkout ne proposera que ceux-ci
-    // à l'étape adresse de livraison.
-    allowedCountries: ["FR", "BE", "CH", "LU", "MC"],
+    // à l'étape adresse de livraison. Couvre l'Europe au sens large.
+    allowedCountries: [
+      "AD", "AT", "BE", "BG", "CH", "CY", "CZ", "DE", "DK", "EE", "ES", "FI",
+      "FR", "GB", "GR", "HR", "HU", "IE", "IS", "IT", "LI", "LT", "LU", "LV",
+      "MC", "MT", "NL", "NO", "PL", "PT", "RO", "SE", "SI", "SK", "SM", "VA",
+    ],
   },
 
   promoCodes: [
