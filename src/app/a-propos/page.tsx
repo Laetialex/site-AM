@@ -1,14 +1,17 @@
 import { ProsePage } from "@/components/content/ProsePage";
 
-// Texte de placeholder — à réécrire avec la vraie histoire de la marque.
 export default function AProposPage() {
   return (
-    <ProsePage title="À propos" subtitle="AM — deux univers, une exigence.">
+    <ProsePage title="À propos" subtitle="AM — une marque, une preuve.">
       <p>
-        AM est née d&apos;une idée simple : le streetwear peut être précis.
-        Coupes travaillées, matières lourdes, finitions soignées — la même
-        exigence que les maisons classiques, appliquée à une garde-robe
-        pensée pour la rue.
+        J&apos;ai voulu créer une marque de vêtements qui me représente : qui
+        je suis et comment je m&apos;habille. AM, c&apos;est aussi une façon
+        de me prouver ce dont je suis capable, de repousser mes limites et
+        de me dépasser.
+      </p>
+      <p>
+        J&apos;adore m&apos;habiller — AM est une façon d&apos;en faire une
+        expression.
       </p>
       <h2>Old Money × Streetwear</h2>
       <p>
