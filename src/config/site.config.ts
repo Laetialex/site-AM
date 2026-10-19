@@ -133,18 +133,20 @@ export const siteConfig = {
     testimonials: [] as { author: string; text: string; rating: number }[],
   },
 
-  /** Guide des tailles — à compléter avec de vraies mesures. */
+  /**
+   * Guide des tailles. Seule la taille L a été mesurée pour l'instant sur
+   * le t-shirt Build Your Life et le sweat Heritage Excellence — ajoute
+   * les autres tailles ici dès que tu as les mesures (plutôt que d'inventer
+   * des chiffres non vérifiés).
+   */
   sizeGuide: {
     unit: "cm",
-    // Une ligne par taille ; ajoute/retire des colonnes selon tes besoins.
     measurements: [
-      { size: "S", chest: 0, length: 0, shoulders: 0 },
-      { size: "M", chest: 0, length: 0, shoulders: 0 },
-      { size: "L", chest: 0, length: 0, shoulders: 0 },
-      { size: "XL", chest: 0, length: 0, shoulders: 0 },
+      { size: "T-shirt Build Your Life — L", chest: 55, length: 75, shoulders: 0 },
+      { size: "Sweat Heritage Excellence — L", chest: 50, length: 70, shoulders: 0 },
     ],
     adviceText:
-      "Mesure un vêtement que tu portes déjà à plat, d'aisselle à aisselle pour la largeur, du col au bas pour la longueur.",
+      "Mesures prises à plat sur l'échantillon taille L : d'aisselle à aisselle pour la largeur, du col au bas pour la longueur. Les autres tailles seront ajoutées dès que mesurées — contacte-nous si tu as besoin d'une taille précise avant.",
   },
 
   /**
@@ -155,22 +157,22 @@ export const siteConfig = {
    */
   products: [
     {
-      slug: "t-shirt-col-polo-creme",
-      name: "T-Shirt Col Polo Crème",
+      slug: "t-shirt-build-your-life",
+      name: "T-Shirt Build Your Life",
       universe: "old-money",
       category: "t-shirts",
       audience: "mixte",
-      price: 65,
-      shortDescription: "T-shirt col polo en coton lourd, coupe droite.",
+      price: 24.99,
+      shortDescription: "T-shirt noir, logo rose AM brodé, sérigraphie dos vintage.",
       description:
-        "Un basique repensé : coton épais 260g/m², col polo structuré, broderie discrète AM sur la poitrine. Une pièce intemporelle, pensée pour durer.",
+        "T-shirt noir uni, petit logo AM brodé façon rose sur la poitrine, sérigraphie \"Build Your Life\" au dos avec illustration automobile vintage et devise Old Money. Une pièce signature entre discrétion et déclaration.",
       sizes: ["S", "M", "L", "XL"],
       images: {
-        face: "/images/products/tshirt-col-polo-creme-face.svg",
-        porte: "/images/products/tshirt-col-polo-creme-porte.svg",
-        detail: "/images/products/tshirt-col-polo-creme-detail.svg",
+        face: "/images/products/tshirt-build-your-life-face.webp",
+        porte: "/images/products/tshirt-build-your-life-face.webp",
+        detail: "/images/products/tshirt-build-your-life-detail.webp",
       },
-      stockDisplayed: 24,
+      stockDisplayed: null,
       isNew: true,
       isFeaturedInDrop: true,
     },
@@ -195,22 +197,22 @@ export const siteConfig = {
       isFeaturedInDrop: true,
     },
     {
-      slug: "t-shirt-oversize-logo-am",
-      name: "T-Shirt Oversize Logo AM",
-      universe: "streetwear",
+      slug: "sweat-heritage-excellence",
+      name: "Sweat Heritage Excellence",
+      universe: "old-money",
       category: "t-shirts",
       audience: "mixte",
-      price: 70,
-      shortDescription: "T-shirt oversize, gros logo AM imprimé dans le dos.",
+      price: 34.99,
+      shortDescription: "Sweat marine, écusson AM brodé, sérigraphie dos \"Heritage Inspires Excellence\".",
       description:
-        "Coupe oversize, coton épais délavé, gros logo AM sérigraphié au dos, petit logo poitrine. La pièce signature du Drop 01.",
-      sizes: ["S", "M", "L", "XL", "XXL"],
+        "Sweat col rond marine, écusson AM brodé façon blason sur la poitrine, sérigraphie \"Heritage Inspires Excellence\" au dos. Coupe droite, matière épaisse, pour les jours où la discrétion fait l'allure.",
+      sizes: ["S", "M", "L", "XL"],
       images: {
-        face: "/images/products/tshirt-oversize-logo-am-face.svg",
-        porte: "/images/products/tshirt-oversize-logo-am-porte.svg",
-        detail: "/images/products/tshirt-oversize-logo-am-detail.svg",
+        face: "/images/products/sweat-heritage-excellence-face.webp",
+        porte: "/images/products/sweat-heritage-excellence-face.webp",
+        detail: "/images/products/sweat-heritage-excellence-detail.webp",
       },
-      stockDisplayed: 8,
+      stockDisplayed: null,
       isNew: true,
       isFeaturedInDrop: true,
     },
