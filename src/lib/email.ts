@@ -9,7 +9,13 @@ export function getResend() {
   return new Resend(process.env.RESEND_API_KEY);
 }
 
-type OrderEmailItem = { name: string; size: string; quantity: number; price: number };
+export type OrderEmailItem = {
+  slug: string;
+  name: string;
+  size: string;
+  quantity: number;
+  price: number;
+};
 
 function renderOrderEmailHtml(items: OrderEmailItem[], amountTotalCents: number) {
   const rows = items
@@ -68,6 +74,118 @@ export async function sendOrderConfirmationEmail(params: {
     to: params.to,
     subject: "Ta précommande AM est confirmée",
     html: renderOrderEmailHtml(params.items, params.amountTotalCents),
+  });
+}
+
+function renderOrderStatusEmailHtml(params: {
+  title: string;
+  message: string;
+  items: OrderEmailItem[];
+}) {
+  const itemLines = params.items
+    .map((item) => `${item.name} — Taille ${item.size} · Qté ${item.quantity}`)
+    .join("<br/>");
+
+  return `
+    <div style="background:#000000;padding:40px 20px;">
+      <div style="max-width:480px;margin:0 auto;">
+        <p style="text-align:center;color:#C9A96E;letter-spacing:4px;font-family:Arial,sans-serif;font-size:12px;text-transform:uppercase;">
+          ${siteConfig.brand.name}
+        </p>
+        <h1 style="text-align:center;color:#F5F1E8;font-family:Georgia,serif;font-weight:400;font-size:26px;margin:16px 0;">
+          ${params.title}
+        </h1>
+        <p style="text-align:center;color:#9a9488;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;">
+          ${params.message}
+        </p>
+        <p style="text-align:center;color:#F5F1E8;font-family:Georgia,serif;font-size:13px;line-height:1.8;margin-top:24px;">
+          ${itemLines}
+        </p>
+        <p style="text-align:center;color:#9a9488;font-family:Arial,sans-serif;font-size:12px;margin-top:40px;">
+          ${siteConfig.brand.name} — des questions ? ${siteConfig.brand.contactEmail}
+        </p>
+      </div>
+    </div>`;
+}
+
+export async function sendOrderPreparingEmail(params: { to: string; items: OrderEmailItem[] }) {
+  const resend = getResend();
+  if (!resend) return;
+  const from = process.env.RESEND_FROM_EMAIL || "AM <onboarding@resend.dev>";
+  await resend.emails.send({
+    from,
+    to: params.to,
+    subject: "Ta commande AM est en préparation",
+    html: renderOrderStatusEmailHtml({
+      title: "En préparation",
+      message: "Ta commande est en cours de préparation. On te prévient dès qu'elle part.",
+      items: params.items,
+    }),
+  });
+}
+
+export async function sendOrderShippedEmail(params: { to: string; items: OrderEmailItem[] }) {
+  const resend = getResend();
+  if (!resend) return;
+  const from = process.env.RESEND_FROM_EMAIL || "AM <onboarding@resend.dev>";
+  await resend.emails.send({
+    from,
+    to: params.to,
+    subject: "Ta commande AM a été expédiée",
+    html: renderOrderStatusEmailHtml({
+      title: "Expédiée",
+      message: "Ta commande vient de partir. Elle devrait arriver sous peu.",
+      items: params.items,
+    }),
+  });
+}
+
+export async function sendOrderDeliveredEmail(params: {
+  to: string;
+  items: OrderEmailItem[];
+  origin: string;
+}) {
+  const resend = getResend();
+  if (!resend) return;
+  const from = process.env.RESEND_FROM_EMAIL || "AM <onboarding@resend.dev>";
+
+  const reviewLinks = params.items
+    .map(
+      (item) =>
+        `<a href="${params.origin}/produits/${item.slug}" style="color:#C9A96E;">${item.name}</a>`,
+    )
+    .join("<br/>");
+
+  const html = `
+    <div style="background:#000000;padding:40px 20px;">
+      <div style="max-width:480px;margin:0 auto;">
+        <p style="text-align:center;color:#C9A96E;letter-spacing:4px;font-family:Arial,sans-serif;font-size:12px;text-transform:uppercase;">
+          ${siteConfig.brand.name}
+        </p>
+        <h1 style="text-align:center;color:#F5F1E8;font-family:Georgia,serif;font-weight:400;font-size:26px;margin:16px 0;">
+          Livrée
+        </h1>
+        <p style="text-align:center;color:#9a9488;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;">
+          Ta commande a été livrée. Si ce n'est pas le cas, écris-nous à
+          ${siteConfig.brand.contactEmail}.
+        </p>
+        <p style="text-align:center;color:#9a9488;font-family:Arial,sans-serif;font-size:14px;line-height:1.6;margin-top:16px;">
+          Dis-nous ce que tu en penses — laisse un avis (connexion requise) :
+        </p>
+        <p style="text-align:center;font-family:Georgia,serif;font-size:14px;line-height:1.8;margin-top:12px;">
+          ${reviewLinks}
+        </p>
+        <p style="text-align:center;color:#9a9488;font-family:Arial,sans-serif;font-size:12px;margin-top:40px;">
+          ${siteConfig.brand.name} — des questions ? ${siteConfig.brand.contactEmail}
+        </p>
+      </div>
+    </div>`;
+
+  await resend.emails.send({
+    from,
+    to: params.to,
+    subject: "Ta commande AM est arrivée — donne-nous ton avis",
+    html,
   });
 }
 
