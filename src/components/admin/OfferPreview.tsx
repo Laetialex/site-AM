@@ -1,7 +1,11 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { sendOfferEmail } from "@/app/actions/offers";
+import {
+  getSubscriberCount,
+  sendOfferEmail,
+  sendTestOfferEmail,
+} from "@/app/actions/offers";
 import { Button } from "@/components/ui/Button";
 
 export function OfferPreview({
@@ -13,6 +17,13 @@ export function OfferPreview({
 }) {
   const [subject, setSubject] = useState(initialSubject);
   const [body, setBody] = useState(initialBody);
+  const [testEmail, setTestEmail] = useState("");
+
+  const [testPending, startTest] = useTransition();
+  const [testResult, setTestResult] = useState<{ success?: boolean; error?: string } | null>(
+    null,
+  );
+
   const [sendPending, startSend] = useTransition();
   const [sendResult, setSendResult] = useState<{
     success?: boolean;
@@ -20,9 +31,23 @@ export function OfferPreview({
     error?: string;
   } | null>(null);
 
+  function handleTest() {
+    setTestResult(null);
+    startTest(async () => {
+      const result = await sendTestOfferEmail(subject, body, testEmail);
+      setTestResult(result);
+    });
+  }
+
   function handleSend() {
     setSendResult(null);
     startSend(async () => {
+      const count = await getSubscriberCount();
+      const confirmed = window.confirm(
+        `Envoyer cet email à ${count} destinataire${count > 1 ? "s" : ""} ? Cette action est irréversible.`,
+      );
+      if (!confirmed) return;
+
       const result = await sendOfferEmail(subject, body);
       setSendResult(result);
     });
@@ -52,6 +77,36 @@ export function OfferPreview({
           className="w-full resize-none border border-am-offwhite/30 bg-transparent p-2 text-sm font-light text-am-offwhite focus:border-am-gold focus:outline-none"
         />
       </label>
+
+      <div className="flex flex-col gap-2 border-t border-am-offwhite/10 pt-4">
+        <label className="flex flex-col gap-1 text-left">
+          <span className="text-xs tracking-[0.1em] text-am-offwhite-muted uppercase">
+            Envoyer un test à (ton email)
+          </span>
+          <input
+            type="email"
+            value={testEmail}
+            onChange={(e) => setTestEmail(e.target.value)}
+            placeholder="toi@exemple.com"
+            className="w-full border-b border-am-offwhite/30 bg-transparent py-2 text-sm font-light text-am-offwhite focus:border-am-gold focus:outline-none"
+          />
+        </label>
+        {testResult?.error && (
+          <p role="alert" className="text-xs text-am-gold">
+            {testResult.error}
+          </p>
+        )}
+        {testResult?.success && <p className="text-xs text-am-gold">Email de test envoyé.</p>}
+        <Button
+          type="button"
+          variant="secondary"
+          onClick={handleTest}
+          disabled={testPending || !testEmail.trim()}
+          className="self-start"
+        >
+          {testPending ? "Envoi..." : "Envoyer un test"}
+        </Button>
+      </div>
 
       {sendResult?.error && (
         <p role="alert" className="text-xs text-am-gold">

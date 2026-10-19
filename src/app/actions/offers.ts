@@ -76,6 +76,52 @@ export async function generateOfferEmail(
   return { subject: parsed.subject, body: parsed.body };
 }
 
+export async function getSubscriberCount(): Promise<number> {
+  if (!(await isAdmin()) || !supabaseAdminConfigured) {
+    return 0;
+  }
+  const admin = createAdminClient()!;
+  const { count } = await admin
+    .from("newsletter_subscribers")
+    .select("id", { count: "exact", head: true });
+  return count ?? 0;
+}
+
+export type SendTestState = { success?: boolean; error?: string };
+
+export async function sendTestOfferEmail(
+  subject: string,
+  body: string,
+  testEmail: string,
+): Promise<SendTestState> {
+  if (!(await isAdmin())) {
+    return { error: "Non autorisé." };
+  }
+  if (!resendConfigured) {
+    return { error: "Resend n'est pas encore configuré." };
+  }
+  if (!subject.trim() || !body.trim() || !testEmail.trim()) {
+    return { error: "Sujet, contenu et email de test requis." };
+  }
+
+  const origin = await getOrigin();
+  const from = process.env.RESEND_FROM_EMAIL || "AM <onboarding@resend.dev>";
+  const resend = getResend()!;
+
+  await resend.emails.send({
+    from,
+    to: testEmail.trim(),
+    subject: `[Test] ${subject}`,
+    html: renderOfferEmailHtml({
+      body,
+      // Pas de vrai abonné associé à un envoi de test — lien neutre.
+      unsubscribeUrl: `${origin}/api/desinscription?id=test`,
+    }),
+  });
+
+  return { success: true };
+}
+
 export type SendOfferState = { success?: boolean; count?: number; error?: string };
 
 export async function sendOfferEmail(subject: string, body: string): Promise<SendOfferState> {
