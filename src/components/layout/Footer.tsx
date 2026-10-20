@@ -25,6 +25,10 @@ export function Footer() {
           <p className="max-w-xs text-sm font-light text-am-offwhite-muted">
             {siteConfig.brand.tagline}
           </p>
+          <p className="max-w-xs text-xs font-light text-am-gold">
+            Livraison estimée sous {siteConfig.drop.estimatedDeliveryText}, partout en
+            Europe.
+          </p>
           <div className="flex items-center gap-4 pt-2">
             <a
               href={siteConfig.brand.social.instagram}
