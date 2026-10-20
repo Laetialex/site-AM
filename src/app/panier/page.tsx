@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/Button";
 import { PaymentLogos } from "@/components/PaymentLogos";
 import { CartLineItem } from "@/components/cart/CartLineItem";
 import { CheckoutButton } from "@/components/cart/CheckoutButton";
+import { ManualOrderCta } from "@/components/cart/ManualOrderCta";
 import { NewsletterForm } from "@/components/layout/NewsletterForm";
 
 export default function PanierPage() {
@@ -144,7 +145,9 @@ export default function PanierPage() {
             </form>
           )}
 
-          <PaymentLogos className="justify-center border-t border-am-gold/15 pt-4" />
+          {!siteConfig.manualOrderMode && (
+            <PaymentLogos className="justify-center border-t border-am-gold/15 pt-4" />
+          )}
 
           {dropEnded ? (
             <div className="flex flex-col gap-3 border-t border-am-gold/15 pt-4 text-center">
@@ -157,6 +160,8 @@ export default function PanierPage() {
               </Button>
               <NewsletterForm />
             </div>
+          ) : siteConfig.manualOrderMode ? (
+            <ManualOrderCta lines={lines} total={total} />
           ) : (
             <>
               <CheckoutButton items={items} promoCode={promo?.code ?? null} />
