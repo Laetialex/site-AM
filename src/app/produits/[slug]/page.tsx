@@ -133,6 +133,16 @@ export default async function ProductPage({
 
           <AddToCartForm product={product} dropEnded={dropEnded} />
 
+          {siteConfig.manualOrderMode && !dropEnded && (
+            <p className="text-center text-sm text-am-gold">
+              Pour commander, contacte-nous en privé sur{" "}
+              <Link href={siteConfig.brand.social.instagram} className="underline underline-offset-4">
+                Instagram
+              </Link>
+              .
+            </p>
+          )}
+
           <div className="border-t border-am-gold/15 pt-6 text-xs font-light text-am-offwhite-muted">
             <p>
               Livraison {siteConfig.shipping.estimatedDays} après expédition
