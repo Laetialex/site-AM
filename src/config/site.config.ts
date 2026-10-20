@@ -121,7 +121,6 @@ export const siteConfig = {
     // Livraison offerte si le panier contient tous ces produits (indépendamment
     // du montant) — actuellement : le t-shirt + le sweat ensemble.
     freeWithAllProducts: ["t-shirt-build-your-life", "sweat-heritage-excellence"],
-    estimatedDays: "3 à 5 jours ouvrés",
     // Codes pays ISO 3166-1 alpha-2 — Stripe Checkout ne proposera que ceux-ci
     // à l'étape adresse de livraison. Couvre l'Europe au sens large.
     allowedCountries: [
