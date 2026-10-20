@@ -68,6 +68,14 @@ export const siteConfig = {
     contactEmail: "alexandremusto69@gmail.com",
   },
 
+  /**
+   * Tant que le paiement en ligne n'est pas activé (statut entreprise en
+   * cours), le panier affiche un message pour commander par message /
+   * virement bancaire plutôt que le bouton de paiement Stripe. Repasse à
+   * false dès que le paiement en ligne peut être activé.
+   */
+  manualOrderMode: true,
+
   /** Porte d'entrée prénom + email avant d'accéder au site. */
   gate: {
     enabled: false,
