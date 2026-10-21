@@ -138,6 +138,10 @@ export default async function ProductPage({
               Pour commander, contacte-nous en privé sur{" "}
               <Link href={siteConfig.brand.social.instagram} className="underline underline-offset-4">
                 Instagram
+              </Link>{" "}
+              ou{" "}
+              <Link href={siteConfig.brand.social.tiktok} className="underline underline-offset-4">
+                TikTok
               </Link>
               .
             </p>
