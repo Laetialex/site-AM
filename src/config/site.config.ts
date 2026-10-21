@@ -90,7 +90,7 @@ export const siteConfig = {
     startDate: "2026-09-20T00:00:00+02:00",
     endDate: "2026-10-20T23:59:59+02:00",
     // Texte affiché partout où le délai de livraison estimé est mentionné.
-    estimatedDeliveryText: "3 semaines à 1 mois",
+    estimatedDeliveryText: "3 à 4 semaines",
     // Affiche le compte à rebours sur la page d'accueil. Passe à true pour
     // le réactiver (ex. juste avant la fin du drop).
     showCountdown: false,

@@ -146,10 +146,9 @@ export default async function ProductPage({
           <div className="border-t border-am-gold/15 pt-6 text-xs font-light text-am-offwhite-muted">
             <p>
               Livraison estimée sous {siteConfig.drop.estimatedDeliveryText}.
-              Frais de port {formatPrice(siteConfig.shipping.flatRate)}, offerts
-              dès {formatPrice(siteConfig.shipping.freeAboveAmount)} d&apos;achat
-              — ou gratuits si tu prends le t-shirt Build Your Life et le sweat
-              Heritage Excellence ensemble.
+              Frais de port {formatPrice(siteConfig.shipping.flatRate)}, gratuits
+              si tu prends le t-shirt Build Your Life et le sweat Heritage
+              Excellence ensemble.
             </p>
             <Link
               href="/livraison-retours"
