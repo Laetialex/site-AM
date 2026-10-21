@@ -21,8 +21,7 @@ export default function LivraisonRetoursPage() {
 
       <h2>Frais de port</h2>
       <p>
-        {formatPrice(shipping.flatRate)} pour toute commande, offerts dès{" "}
-        {formatPrice(shipping.freeAboveAmount)} d&apos;achat. Délai de
+        {formatPrice(shipping.flatRate)} pour toute commande. Délai de
         livraison estimé : {drop.estimatedDeliveryText}.
       </p>
       <p className="rounded border border-am-gold/30 p-4 text-am-gold">
