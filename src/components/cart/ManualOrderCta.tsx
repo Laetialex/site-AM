@@ -30,6 +30,9 @@ export function ManualOrderCta({
         <Button href={siteConfig.brand.social.instagram} className="w-full">
           Commander sur Instagram
         </Button>
+        <Button href={siteConfig.brand.social.tiktok} variant="secondary" className="w-full">
+          Commander sur TikTok
+        </Button>
         <Button href={mailtoHref} variant="secondary" className="w-full">
           Commander par email
         </Button>
