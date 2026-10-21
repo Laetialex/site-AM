@@ -95,12 +95,6 @@ export default function PanierPage() {
               <span>Livraison estimée</span>
               <span>{shipping === 0 ? "Offerte" : formatPrice(shipping)}</span>
             </div>
-            {shipping > 0 && (
-              <p className="text-xs text-am-offwhite-muted">
-                Offerte en prenant le t-shirt Build Your Life et le sweat
-                Heritage Excellence ensemble.
-              </p>
-            )}
             <div className="mt-2 flex justify-between border-t border-am-gold/15 pt-2 text-base text-am-offwhite">
               <span>Total</span>
               <span>{formatPrice(total)}</span>
