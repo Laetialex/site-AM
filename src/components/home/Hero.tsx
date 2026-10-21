@@ -3,7 +3,6 @@ import { siteConfig } from "@/config/site.config";
 import { getDropStatus, formatDropDate } from "@/lib/drop";
 import { Button } from "@/components/ui/Button";
 import { Countdown } from "@/components/home/Countdown";
-import { NewsletterForm } from "@/components/layout/NewsletterForm";
 
 export function Hero() {
   const status = getDropStatus();
@@ -34,14 +33,9 @@ export function Hero() {
         </h1>
 
         {status === "ended" ? (
-          <>
-            <p className="max-w-sm text-sm font-light text-am-offwhite/90">
-              {siteConfig.drop.endedMessage}
-            </p>
-            <div className="mt-2 w-full max-w-xs">
-              <NewsletterForm />
-            </div>
-          </>
+          <p className="max-w-sm text-sm font-light text-am-offwhite/90">
+            {siteConfig.drop.endedMessage}
+          </p>
         ) : (
           <>
             <p className="max-w-sm text-sm font-light text-am-offwhite/90">
