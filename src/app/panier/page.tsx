@@ -97,8 +97,8 @@ export default function PanierPage() {
             </div>
             {shipping > 0 && (
               <p className="text-xs text-am-offwhite-muted">
-                Offerte dès {formatPrice(siteConfig.shipping.freeAboveAmount)} d&apos;achat, ou en
-                prenant le t-shirt Build Your Life et le sweat Heritage Excellence ensemble.
+                Offerte en prenant le t-shirt Build Your Life et le sweat
+                Heritage Excellence ensemble.
               </p>
             )}
             <div className="mt-2 flex justify-between border-t border-am-gold/15 pt-2 text-base text-am-offwhite">

@@ -117,7 +117,6 @@ export const siteConfig = {
 
   shipping: {
     flatRate: 2,
-    freeAboveAmount: 120,
     // Livraison offerte si le panier contient tous ces produits (indépendamment
     // du montant) — actuellement : le t-shirt + le sweat ensemble.
     freeWithAllProducts: ["t-shirt-build-your-life", "sweat-heritage-excellence"],
