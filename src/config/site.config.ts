@@ -88,7 +88,7 @@ export const siteConfig = {
     name: "Drop 01",
     // Dates au format ISO 8601, fuseau Europe/Paris implicite.
     startDate: "2026-09-20T00:00:00+02:00",
-    endDate: "2026-10-20T23:59:59+02:00",
+    endDate: "2030-12-31T23:59:59+01:00",
     // Texte affiché partout où le délai de livraison estimé est mentionné.
     estimatedDeliveryText: "3 à 4 semaines",
     // Affiche le compte à rebours sur la page d'accueil. Passe à true pour
