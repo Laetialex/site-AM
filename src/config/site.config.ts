@@ -136,6 +136,12 @@ export const siteConfig = {
       value: 10,
       description: "10% de réduction pour une première commande",
     },
+    {
+      code: "FIDELE10",
+      type: "percent",
+      value: 10,
+      description: "10% de réduction pour un·e client·e qui a déjà commandé",
+    },
   ] satisfies PromoCode[],
 
   /** Bandeau de preuve sociale — reste masqué tant que enabled = false. */
