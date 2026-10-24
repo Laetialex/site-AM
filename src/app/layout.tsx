@@ -10,6 +10,9 @@ import { CartProvider } from "@/lib/cart";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://site-am-ten.vercel.app",
+  ),
   title: siteConfig.brand.tagline,
   description: siteConfig.brand.description,
 };
